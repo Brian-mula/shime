@@ -35,9 +35,9 @@
       >
         
         <div class="flex flex-col px-0 py-4">
-          <div>
+          <nuxt-link to="/software">
             <span class="text-gray-600 ">Software Engneering</span>
-          </div>
+          </nuxt-link>
          
         </div>
         <div>

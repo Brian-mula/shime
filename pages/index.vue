@@ -8,10 +8,26 @@
         class="border border-gray-300 rounded-lg block w-full p-2.5 text-gray-900"
       />
     </div>
-    
+
+    <div
+      class="text-center bg-cover bg-hero text-gray-800 md:py-32 py-16 md:px-16 px-8"
+    >
+      <h1
+        class="text-5xl md:text-6xl xl:text-7xl font-bold tracking-tight mb-12"
+      >
+        The best tool to manage<br /><span class="text-blue-600 py-2"
+          >senior year projects</span
+        >
+      </h1>
+       <div class="mt-8 py-4">
+      <h2 class="text-center text-gray-800 md:text-5xl text-4xl font-bold">
+        Approved Projects
+      </h2>
+    </div>
+    </div>
    
-    
-    <div class="w-full grid grid-cols-3 gap-10" >
+
+    <div class="w-full grid grid-cols-3 gap-10">
       <div class="" v-for="project in searchedProjects" :key="project.id">
         <nuxt-link
           :to="{ name: 'projects-id', params: { id: project.id } }"
@@ -21,14 +37,18 @@
         </nuxt-link>
       </div>
     </div>
-   
-    
   </div>
 </template>
 
 <script>
 import Card_item from "~~/components/card_item.vue";
-import { collection, getDocs, getFirestore,getDoc,doc } from "firebase/firestore";
+import {
+  collection,
+  getDocs,
+  getFirestore,
+  getDoc,
+  doc,
+} from "firebase/firestore";
 export default {
   setup() {
     const firebaseUser = useFirebaseUser();
@@ -54,11 +74,11 @@ export default {
 
     const isPending = ref(false);
     const handlePendingProjects = () => {
-      isPending.value=!isPending.value
-      console.log('You clicked pending')
+      isPending.value = !isPending.value;
+      console.log("You clicked pending");
     };
-    
-    const userInfo=ref(null);
+
+    const userInfo = ref(null);
 
     onMounted(async () => {
       const db = getFirestore();
@@ -69,9 +89,8 @@ export default {
 
         console.log(projects.value);
         // finding the user
-       
       });
-    
+
       const userRef = doc(db, "users", firebaseUser.value.uid);
       const userSnap = await getDoc(userRef);
       if (userSnap.exists()) {
@@ -81,7 +100,6 @@ export default {
         // doc.data() will be undefined in this case
         console.log("No such document! check your id in user details");
       }
-      
     });
     return {
       projects,
@@ -91,7 +109,7 @@ export default {
       searchedProjects,
       search,
       isPending,
-      handlePendingProjects
+      handlePendingProjects,
     };
   },
   components: { Card_item },

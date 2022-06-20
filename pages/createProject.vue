@@ -29,7 +29,7 @@
               v-model="first_name"
               class="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
               type="text"
-              placeholder="Mulati"
+              placeholder="Rebecca"
             />
           </div>
           <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
@@ -43,7 +43,7 @@
               v-model="last_name"
               class="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
               type="text"
-              placeholder="Mulati"
+              placeholder="Nishimwe"
             />
           </div>
         </div>
@@ -105,20 +105,7 @@
             ></textarea>
           </div>
         </div>
-        <div class="flex flex-wrap -mx-3 mb-6">
-          <div class="w-full px-3">
-            <label
-              class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-              for="grid-password"
-            >
-              Upload Design:
-            </label>
-            <input
-              class="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-              type="file"
-            />
-          </div>
-        </div>
+        
         <div class="flex flex-wrap -mx-3 mb-2">
           <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
             <label
@@ -246,7 +233,8 @@ const firebaseUser=useFirebaseUser()
     const major = ref("");
     const instructor = ref("");
     const phone = ref("");
-    const field_area=ref('')
+    const field_area=ref('');
+    const approvers=ref([]);
     const majors = ref(["BBIT", "Networking", "Software"]);
     const instructors = ref([
       "Mr.Omambia",
@@ -274,7 +262,8 @@ const firebaseUser=useFirebaseUser()
           phone:phone.value,
           approval:'pending',
           title:title.value,
-          field_area:field_area.value
+          field_area:field_area.value,
+          approvers:approvers.value
 
 
         });

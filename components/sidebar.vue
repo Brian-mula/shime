@@ -6,7 +6,7 @@
           <img
             src="https://z-p3-scontent.fmba2-1.fna.fbcdn.net/v/t1.6435-9/176481516_3956642414452429_7671499091995897092_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=5Iyynv4gx54AX_AdR14&_nc_ht=z-p3-scontent.fmba2-1.fna&oh=00_AT84amXa6C54t8_C5xwXPxRKVjDax6Q1tnTkbHWW3RgiOw&oe=62C3CAE3"
             class="h-6 mr-3 sm:h-7"
-            alt="Flowbite Logo"
+            alt="UEAB LOGO"
           />
           <span
             class="text-gray-800 self-center text-xl font-semibold whitespace-nowrap"

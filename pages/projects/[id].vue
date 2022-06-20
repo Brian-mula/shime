@@ -59,13 +59,31 @@
                 class="block appearance-none w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                 type="hidden"
               />
-              <div>
+              <div v-if="project.approvers.length==0">
                 <button
                   type="button"
                   @click="handleUpdate"
                   class="inline-flex items-center py-2 px-6 text-sm font-medium text-center text-white bg-green-700 rounded-lg hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
                 >
-                  Approve Project
+                  Approve Project 0
+                </button>
+              </div>
+              <div v-if="project.approvers.length==1">
+                <button
+                  type="button"
+                  @click="handleUpdate1"
+                  class="inline-flex items-center py-2 px-6 text-sm font-medium text-center text-white bg-green-700 rounded-lg hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
+                >
+                  Approve Project 1
+                </button>
+              </div>
+              <div v-if="project.approvers.length==2">
+                <button
+                  type="button"
+                  @click="handleUpdate2"
+                  class="inline-flex items-center py-2 px-6 text-sm font-medium text-center text-white bg-green-700 rounded-lg hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
+                >
+                  Approve Project 2
                 </button>
               </div>
             </form>
@@ -95,10 +113,11 @@
 </template>
 
 <script>
-import { doc, getDoc, getFirestore, updateDoc } from "firebase/firestore";
+import { doc, getDoc, getFirestore, updateDoc,arrayUnion } from "firebase/firestore";
 export default {
   setup() {
     const router = useRoute();
+    const route=useRouter()
     const approval = ref("ongoing");
     const firebaseUser=useFirebaseUser()
 
@@ -132,10 +151,32 @@ export default {
     const handleUpdate = async () => {
       const projoRef = doc(db, "projects", router.params.id);
       await updateDoc(projoRef, {
-        approval: approval.value,
+        approvers:arrayUnion(firebaseUser.value.uid),
+        
       });
       console.log("approved");
-      router.push('/lecturers')
+      route.push('/lecturers')
+      
+    };
+     const handleUpdate1 = async () => {
+      const projoRef = doc(db, "projects", router.params.id);
+      await updateDoc(projoRef, {
+        approvers:arrayUnion(firebaseUser.value.uid),
+        
+      });
+      console.log("approved");
+      route.push('/lecturers')
+      
+    };
+     const handleUpdate2 = async () => {
+      const projoRef = doc(db, "projects", router.params.id);
+      await updateDoc(projoRef, {
+        approvers:arrayUnion(firebaseUser.value.uid),
+        approval:approval.value
+        
+      });
+      console.log("approved");
+      route.push('/lecturers')
       
     };
     const handleReject = async () => {
@@ -146,7 +187,7 @@ export default {
       console.log("approved");
       router.push('/lecturers')
     };
-    return { project, approval, handleUpdate, handleReject };
+    return { project, approval, handleUpdate, handleReject,handleUpdate1,handleUpdate2 };
   },
 };
 </script>

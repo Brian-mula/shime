@@ -219,23 +219,67 @@
               <p>Enter your information to register</p>
             </div>
             <div>
-              
-              <div class="flex  -mx-3">
+              <div class="flex -mx-3 flex-col">
+                <div class="flex -mx-3">
                 <div class="w-full px-3 mb-5">
-                  <label for="" class="text-xs font-semibold px-1">Email</label>
-                   <div class="flex flex-col">
-                    
+                  <label for="" class="text-xs font-semibold px-1">First Name</label>
+                  <div class="flex flex-col">
                     <div class="flex justify-center items-center pl-5">
-                    <input
-                    v-model="email"
-                      type="email"
-                      required
-                      class="w-full -ml-10 pl-4 pr-2 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-blue-500"
-                      placeholder="abc@ueab.co.ke"
-                    />
+                      <input
+                        v-model="first_username"
+                        type="email"
+                        required
+                        class="w-full -ml-10 pl-4 pr-2 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-blue-500"
+                        placeholder="Rebecca"
+                      />
                     </div>
                     <div>
-                    <p v-if="emailError" class="text-red-500 text-xs italic">{{emailError}}</p>
+                      <p v-if="first_username_error" class="text-red-500 text-xs italic">
+                        {{ first_username_error }}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+                <div class="flex -mx-3">
+                <div class="w-full px-3 mb-5">
+                  <label for="" class="text-xs font-semibold px-1">Last Name</label>
+                  <div class="flex flex-col">
+                    <div class="flex justify-center items-center pl-5">
+                      <input
+                        v-model="last_username"
+                        type="email"
+                        required
+                        class="w-full -ml-10 pl-4 pr-2 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-blue-500"
+                        placeholder="Nishimwe"
+                      />
+                    </div>
+                    <div>
+                      <p v-if="last_name_error" class="text-red-500 text-xs italic">
+                        {{ last_name_error }}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              </div>
+              <div class="flex -mx-3">
+                <div class="w-full px-3 mb-5">
+                  <label for="" class="text-xs font-semibold px-1">Email</label>
+                  <div class="flex flex-col">
+                    <div class="flex justify-center items-center pl-5">
+                      <input
+                        v-model="email"
+                        type="email"
+                        required
+                        class="w-full -ml-10 pl-4 pr-2 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-blue-500"
+                        placeholder="abc@ueab.co.ke"
+                      />
+                    </div>
+                    <div>
+                      <p v-if="emailError" class="text-red-500 text-xs italic">
+                        {{ emailError }}
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -246,18 +290,22 @@
                     >Password</label
                   >
                   <div class="flex flex-col">
-                    
-                   <div class=" flex tems-center justify-center pl-5">
-                    <input
-                    v-model="password"
-                      type="password"
-                      required
-                      class="w-full -ml-10 pl-4 pr-2 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-blue-500"
-                      placeholder="************"
-                    />
-                   </div>
+                    <div class="flex tems-center justify-center pl-5">
+                      <input
+                        v-model="password"
+                        type="password"
+                        required
+                        class="w-full -ml-10 pl-4 pr-2 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-blue-500"
+                        placeholder="************"
+                      />
+                    </div>
                     <div>
-                    <p v-if="passwordError" class="text-red-500 text-xs italic">{{passwordError}}</p>
+                      <p
+                        v-if="passwordError"
+                        class="text-red-500 text-xs italic"
+                      >
+                        {{ passwordError }}
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -265,8 +313,8 @@
               <div class="flex -mx-3">
                 <div class="w-full px-3 mb-5">
                   <button
-                  type="button"
-                  @click="handleRegister"
+                    type="button"
+                    @click="handleRegister"
                     class="w-full mx-auto bg-blue-500 duration-500 hover:bg-blue-700 focus:bg-blue-700 text-white rounded-lg px-3 py-3 font-semibold"
                   >
                     REGISTER NOW
@@ -292,41 +340,46 @@
 
 <script>
 import { getAuth } from "firebase/auth";
-import { use } from "h3";
+
 export default {
   setup() {
+    const router = useRouter();
 
-    const router=useRouter()
-
-    const email=ref('')
-    const password=ref('')
-    const emailError=ref(null)
-    const passwordError=ref(null)
+    const email = ref("");
+    const password = ref("");
+    const first_username=ref('')
+    const last_username=ref('')
+    const emailError = ref(null);
+    const passwordError = ref(null);
+    const first_username_error=ref(null)
+    const last_name_error=ref(null)
     let auth;
-    onMounted(()=>{
-      auth=getAuth()
-    })
+    onMounted(() => {
+      auth = getAuth();
+    });
 
-    const handleRegister=async(e)=>{
+    const handleRegister = async (e) => {
       e.preventDefault();
-      
-      if (password.value && email.value && password.value>=6){
-        emailError.value=null
-        passwordError.value=null
-        
-        const user=await signUpUser(auth,email.value,password.value)
-        console.log('Signed up',user)
 
-        router.push('/')
+      if (password.value && email.value && password.value >= 6 && first_username.value && last_username.value) {
+        emailError.value = null;
+        passwordError.value = null;
+        first_username_error.value=null;
+        last_name_error.value=null
 
-      }else{
-        emailError.value="Please enter an email"
-        passwordError.value="Please enter a password"
+
+        const user = await signUpUser(auth, email.value, password.value,first_username.value,last_username.value);
+        console.log("Signed up", user);
+
+        router.push("/");
+      } else {
+        emailError.value = "Please enter an email";
+        passwordError.value = "Please enter a password";
+        first_username_error.value="Please enter first name";
+        last_name_error.value="Please enter the last name"
       }
-
-    
-    }
-    return {email,password,handleRegister,emailError,passwordError};
+    };
+    return { email, password, handleRegister, emailError, passwordError,first_username,last_username,first_username_error,last_name_error };
   },
 };
 </script>

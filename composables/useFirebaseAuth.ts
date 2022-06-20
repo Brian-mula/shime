@@ -3,12 +3,14 @@ import { doc, setDoc, getFirestore } from "firebase/firestore";
 
 let errors=null;
 
-export const signUpUser = async(auth,email,password)=>{
+export const signUpUser = async(auth,email,password,first_username,last_username)=>{
   const db=getFirestore()
   
    const credentials=await createUserWithEmailAndPassword(auth, email, password)
     await setDoc(doc(db, "users", credentials.user.uid), {
     isAdmin:false,
+    first_username:first_username,
+    last_username:last_username
     
   })
    
