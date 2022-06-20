@@ -49,12 +49,14 @@
         class="mx-4 my-4 flex flex-row justify-between px-2 items-center bg-gray-100 rounded-lg border shadow-md hover:bg-gray-200 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700"
       >
         
+       <nuxt-link to="/network">
         <div class="flex flex-col px-0 py-4">
           <div>
             <span class="text-gray-600">Networking</span>
           </div>
           
         </div>
+       </nuxt-link>
         <div>
           <span class="text-gray-50 las la-angle-right" />
         </div>
@@ -64,12 +66,14 @@
         class="mx-4 my-4 flex flex-row justify-between px-2 items-center bg-gray-100 rounded-lg border shadow-md hover:bg-gray-300 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700"
       >
         
+        <nuxt-link to="/bbit">
         <div class="flex flex-col px-0 py-4">
           <div>
             <span class="text-gray-600">BBIT</span>
           </div>
           
         </div>
+        </nuxt-link>
         <div>
           <span class="text-gray-50 las la-angle-right" />
         </div>

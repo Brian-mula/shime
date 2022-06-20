@@ -1,7 +1,7 @@
 <template>
     <div>
     <div v-if="projects">
-    <div class="w-full grid grid-cols-3 gap-10">
+    <div class="w-full grid grid-cols-3 gap-10 mt-10">
       <div class="" v-for="project in sotwareProjects" :key="project.id">
         <nuxt-link
           :to="{ name: 'projects-id', params: { id: project.id } }"

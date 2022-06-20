@@ -10,7 +10,7 @@
           <h4 class="font-bold text-lg text-pink-600">
             {{ user.first_username }} {{ user.last_username }}
           </h4>
-          <h4 v-if="user.isAdmin">{{user.isAdmin}}</h4>
+          <h4 v-if="user.isAdmin">Admin</h4>
           <button
           v-else
             type="button"
