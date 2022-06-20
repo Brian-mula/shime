@@ -81,13 +81,6 @@
        <div
         class="mx-4 my-4 flex flex-row justify-between px-2 items-center bg-gray-100 rounded-lg border shadow-md hover:bg-gray-300 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700"
       >
-        
-        <div class="flex flex-col px-0 py-4">
-          <div>
-            <span class="text-gray-600">Diploma</span>
-          </div>
-          
-        </div>
         <div>
           <span class="text-gray-50 las la-angle-right" />
         </div>
