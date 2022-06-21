@@ -3,7 +3,7 @@
     <div v-for="user in users" :key="user.id">
       <div class="flex bg-white drop-shadow-md rounded-lg p-1.5">
         <img
-          class="w-28 h-28 rounded-full border-4 border-slate-50 object-cover"
+          class="w-20 h-20 rounded-full border-4 border-slate-50 object-cover"
           src="https://z-p3-scontent.fmba2-1.fna.fbcdn.net/v/t1.6435-9/176481516_3956642414452429_7671499091995897092_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=5Iyynv4gx54AX_AdR14&_nc_ht=z-p3-scontent.fmba2-1.fna&oh=00_AT84amXa6C54t8_C5xwXPxRKVjDax6Q1tnTkbHWW3RgiOw&oe=62C3CAE3"
         />
         <div class="flex flex-col px-5 py-1">
